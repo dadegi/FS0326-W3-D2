@@ -10,6 +10,7 @@ const myToggle = document.querySelector('#myToggle');
 const myTable = document.querySelector('#myTable');
 
 const myListGetArray = Array.from(myListGet);
+const myClassArray = ['light', 'green', 'red', 'cyan'];
 
 const myElements = ['nuovo elemento 1', 'nuovo elemento 2', 'nuovo elemento 3'];
 
@@ -34,23 +35,51 @@ myListAll.forEach((element) => {
 	element.textContent += ' della lista myList';
 });
 
+// Imposto un contatore a 0, come gli indici dell'array delle classi
+// Non c'è classe di partenza
+// Al primo click imposto classe di partenza a 0 (light)
+// incremento il contatore a ogni click e modifico la classe con quella col valore del contatore; il contatore deve partire da 0
+// se il contatore arriva a quattro (default), lo devo azzerare
+
+let myCounter = 0;
 myToggle.addEventListener('click', () => {
-	lightning.classList.toggle('light');
+	switch (myCounter) {
+		case 0:
+			lightning.classList = myClassArray[myCounter];
+			myCounter += 1;
+			break;
+		case 1:
+			lightning.classList = myClassArray[myCounter];
+			myCounter += 1;
+			break;
+		case 2:
+			lightning.classList = myClassArray[myCounter];
+			myCounter += 1;
+			break;
+		case 3:
+			lightning.classList = myClassArray[myCounter];
+			myCounter += 1;
+			break;
+		default: // reset del contatore e della classe
+			myCounter = 0;
+			lightning.removeAttribute('class');
+			break;
+	}
 });
 
 for (let i = 0; i < myElements.length; i++) {
-    const newLi = document.createElement('li');
-    newLi.textContent = myElements[i];
-    myList.appendChild(newLi);
+	const newLi = document.createElement('li');
+	newLi.textContent = myElements[i];
+	myList.appendChild(newLi);
 }
 
 for (let i = 0; i < myElements.length; i++) {
-    const newTr = document.createElement('tr');
-    const tdId = document.createElement('td');
-    tdId.textContent = i + 1;
-    const nameTd = document.createElement('td');
-    nameTd.textContent = myElements[i];
-    newTr.appendChild(tdId);
-    newTr.appendChild(nameTd);
-    myTable.appendChild(newTr);
+	const newTr = document.createElement('tr');
+	const tdId = document.createElement('td');
+	tdId.textContent = i + 1;
+	const nameTd = document.createElement('td');
+	nameTd.textContent = myElements[i];
+	newTr.appendChild(tdId);
+	newTr.appendChild(nameTd);
+	myTable.appendChild(newTr);
 }
